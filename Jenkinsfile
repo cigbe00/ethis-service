@@ -18,13 +18,13 @@ pipeline {
                 }
             }
         }
-        stage('Cloning git') {
-            steps {
-                script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'git@github.com:cigbe00/ethis-service.git']])
-                }
-            }
-        }
+        // stage('Cloning git') {
+        //     steps {
+        //         script {
+        //             checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'git@github.com:cigbe00/ethis-service.git']])
+        //         }
+        //     }
+        // }
         
         stage ('Building Image') {
             steps {
