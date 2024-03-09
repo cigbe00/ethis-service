@@ -6,6 +6,8 @@ pipeline {
         IMAGE_REPO_NAME="ethis_interview_ecs"
         IMAGE_TAG="latest"
         REPOSITORY_URI= "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+        def dockerHome = tool 'docker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
 
     stages {
