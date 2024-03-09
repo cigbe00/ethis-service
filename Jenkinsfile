@@ -36,7 +36,7 @@ pipeline {
         stage ('Pushing to ECR') {
             steps {
                 script{
-                    /usr/local/bin/docker.withRegistry('https://381492145015.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:aws-credentials') {                    
+                    docker.withRegistry('https://381492145015.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:aws-credentials') {                    
                     dockerImage.push("${env.BUILD_NUMBER}")
                     dockerImage.push("latest")
                     }
