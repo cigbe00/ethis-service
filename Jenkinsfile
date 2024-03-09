@@ -29,7 +29,7 @@ pipeline {
         stage ('Building Image') {
             steps {
                 script {
-                    dockerImage = '/usr/local/bin/docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"'
+                    dockerImage = 'docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"'
                     //echo $dockerImage
                 }
             }
@@ -37,8 +37,8 @@ pipeline {
         stage ('Pushing to ECR') {
             steps {
                 script{
-                    sh "/usr/local/bin/docker tag ${IMAGE_REPO_NAME} ${REPOSITORY_URI}:$IMAGE_TAG"
-                    sh "/usr/local/bin/docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+                    sh "docker tag ${IMAGE_REPO_NAME} ${REPOSITORY_URI}:$IMAGE_TAG"
+                    sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
                     //docker.withRegistry('https://381492145015.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:aws-credentials') {                    
                     // dockerImage.push("${env.BUILD_NUMBER}")
                     // dockerImage.push("latest")
