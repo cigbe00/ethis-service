@@ -28,26 +28,27 @@ pipeline {
         //     }
         // }
         
-        stage ('Building Image') {
+        stage ('Building Image and push image') {
             steps {
-                script {
-                    dockerImage = 'docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"'
-                    //echo $dockerImage
-                }
+                sh './build_push.sh'
+                // script {
+                //     dockerImage = 'docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"'
+                //     //echo $dockerImage
+                // }
             }
         }
-        stage ('Pushing to ECR') {
-            steps {
-                script{
-                    sh "docker tag ${IMAGE_REPO_NAME} ${REPOSITORY_URI}:$IMAGE_TAG"
-                    sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-                    //docker.withRegistry('https://381492145015.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:aws-credentials') {                    
-                    // dockerImage.push("${env.BUILD_NUMBER}")
-                    // dockerImage.push("latest")
-                    //}
-                }
-            }
-        }
+        // stage ('Pushing to ECR') {
+        //     steps {
+        //         script{
+        //             sh "docker tag ${IMAGE_REPO_NAME} ${REPOSITORY_URI}:$IMAGE_TAG"
+        //             sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+        //             //docker.withRegistry('https://381492145015.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:aws-credentials') {                    
+        //             // dockerImage.push("${env.BUILD_NUMBER}")
+        //             // dockerImage.push("latest")
+        //             //}
+        //         }
+        //     }
+        // }
         // stage ('Updating the Deployment File') {
         //     environment {
         //         GIT_REPO_NAME = "ethis-service"
