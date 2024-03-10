@@ -30,6 +30,7 @@ pipeline {
         
         stage ('Building Image and push image') {
             steps {
+                sh 'chmod +x ./build_push.sh'
                 sh './build_push.sh'
                 // script {
                 //     dockerImage = 'docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"'
