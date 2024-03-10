@@ -66,7 +66,7 @@ pipeline {
                         git config  user.name "cigbe00"
                         BUILD_NUMBER=${BUILD_NUMBER}
                         oldBuild=`cat Argo/deployment.yml |grep -o 'ethis_interview_ecs.*'`
-                        sed -i'' -e 's/${oldBuild}/ethis_interview_ecs:${BUILD_NUMBER}/g' Argo/deployment.yml
+                        sed -i '' 's/${oldBuild}/ethis_interview_ecs:${BUILD_NUMBER}/g' Argo/deployment.yml
                         git add Argo/deployment.yml
                         git commit -m "updated the image ${BUILD_NUMBER}"
                         git push
