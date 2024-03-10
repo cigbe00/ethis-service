@@ -65,7 +65,7 @@ pipeline {
                         git config  user.email "cigbe00@gmail.com"
                         git config  user.name "cigbe00"
                         BUILD_NUMBER=${BUILD_NUMBER}
-                        sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" ArgoCD/deployments.yml
+                        sed -i "s/95/${BUILD_NUMBER}/g" ArgoCD/deployments.yml
                         git add ArgoCD/deployments.yml
                         git commit -m "updated the image ${BUILD_NUMBER}"
                         git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/cigbe00.git
