@@ -28,14 +28,12 @@ pipeline {
         //     }
         // }
         
-        stage ('Building Image and push image') {
+        stage ('Building and push image') {
             steps {
                 //sh 'chmod +x ./build_push.sh'
                 sh '/usr/local/bin/docker build -t $IMAGE_REPO_NAME .'
-                script {
-                    dockerImage = 'docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"'
-                    //echo $dockerImage
-                }
+                sh '/usr/local/bin/docker tag ${IMAGE_REPO_NAME} ${REPOSITORY_URI}:$IMAGE_TAG'
+                sh '/usr/local/bin/docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}'
             }
         }
         // stage ('Pushing to ECR') {
