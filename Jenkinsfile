@@ -69,12 +69,12 @@ pipeline {
                         sed -i'' -e 's/${oldBuild}/ethis_interview_ecs:${BUILD_NUMBER}/g' Argo/deployment.yml
                         git add Argo/deployment.yml
                         git commit -m "updated the image ${BUILD_NUMBER}"
-                        git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/cigbe00.git
+                        git push
                         
                         
                        
                     '''
-                //}
+                //} git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/cigbe00.git
             }
         }
     }
