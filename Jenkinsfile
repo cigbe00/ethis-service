@@ -51,29 +51,30 @@ pipeline {
         //         }
         //     }
         // }
-        // stage ('Updating the Deployment File') {
-        //     environment {
-        //         GIT_REPO_NAME = "ethis-service"
-        //         GIT_USER_NAME = "cigbe00"
-        //     }
-        //     steps {
-        //         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]){
-        //             sh '''
+        stage ('Updating the Deployment File') {
+            environment {
+                GIT_REPO_NAME = "ethis-service"
+                GIT_USER_NAME = "cigbe00"
+            }
+            steps {
+               // withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]){
+                    sh '''
                     
-        //                 git pull git@github.com:cigbe00/ethis-service.git
-        //                 git config  user.email "cigbe00@gmail.com"
-        //                 git config  user.name "cigbe00"
-        //                 BUILD_NUMBER=${BUILD_NUMBER}
-        //                 sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" ArgoCD/deployments.yml
-        //                 git add ArgoCD/deployments.yml
-        //                 git commit -m "updated the image ${BUILD_NUMBER}"
-        //                 git push @github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                        git pull git@github.com:cigbe00/ethis-service.git
+                        git config  user.email "cigbe00@gmail.com"
+                        git config  user.name "cigbe00"
+                        BUILD_NUMBER=${BUILD_NUMBER}
+                        sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" ArgoCD/deployments.yml
+                        git add ArgoCD/deployments.yml
+                        git commit -m "updated the image ${BUILD_NUMBER}"
+                        git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/cigbe00.git
+                        
                         
                        
-        //             '''
-        //         }
-        //     }
-        // }
+                    '''
+                //}
+            }
+        }
     }
 
 }
