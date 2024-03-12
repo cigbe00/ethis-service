@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-ci-cd-app
-        image: ****************.dkr.ecr.us-east-2.amazonaws.com/ethis_interview_ecs:52
+        image: ****************.dkr.ecr.us-east-2.amazonaws.com/ethis_interview_ecs:53
         ports: 
         - containerPort: 80
 
