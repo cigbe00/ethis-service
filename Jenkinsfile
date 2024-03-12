@@ -20,13 +20,16 @@ pipeline {
                 }
             }
         }
-        // stage('Cloning git') {
-        //     steps {
-        //         script {
-        //             checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'git@github.com:cigbe00/ethis-service.git']])
-        //         }
-        //     }
-        // }
+        stage("Clone Git Repository") {
+            steps {
+                git(
+                    url: "https://github.com/cigbe00/ethis-service.git",
+                    branch: "main",
+                    changelog: true,
+                    poll: true
+                )
+            }
+        }
         
         stage ('Building and push image') {
             steps {
