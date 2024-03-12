@@ -72,7 +72,7 @@ pipeline {
                         git push @github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                         
                     '''
-                } git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/cigbe00.git
+                } //git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/cigbe00.git
             }
         }
     }
