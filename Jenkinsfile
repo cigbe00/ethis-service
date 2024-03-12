@@ -58,7 +58,7 @@ pipeline {
                 GIT_USER_NAME = "cigbe00"
             }
             steps {
-                withCredentials([string(credentialsId: 'ethis-github-token', variable: 'GITHUB_TOKEN')]){
+                withCredentials([gitUsernamePassword(credentialsId: 'ethis-github-token', variable: 'GITHUB_TOKEN')]){
                     sh '''
                     
                         git pull git@github.com:cigbe00/ethis-service.git
