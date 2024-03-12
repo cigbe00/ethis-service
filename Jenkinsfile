@@ -58,7 +58,7 @@ pipeline {
                 GIT_USER_NAME = "cigbe00"
             }
             steps {
-               // withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]){
+                withCredentials([string(credentialsId: 'ethis-github-token', variable: 'GITHUB_TOKEN')]){
                     sh '''
                     
                         git pull git@github.com:cigbe00/ethis-service.git
@@ -69,12 +69,10 @@ pipeline {
                         sed -i' ' "s/${oldBuild}/ethis_interview_ecs:${BUILD_NUMBER}/g" Argo/deployment.yml
                         git add Argo/deployment.yml
                         git commit -m "updated the image ${BUILD_NUMBER}"
-                        git push
+                        git push @github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                         
-                        
-                       
                     '''
-                //} git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/cigbe00.git
+                } git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/cigbe00.git
             }
         }
     }
