@@ -12,9 +12,8 @@ COPY . .
 #ENV FLASK_APP="utility.py"
 #env FLASK_APP="utility.py python -m flask run"
 
-EXPOSE 8080
 ENV FLASK_APP=utility.py
-ENV FLASK_DEBUG=1
-ENV FLASK_RUN_PORT=8090
+#ENV FLASK_DEBUG=1
+#ENV FLASK_RUN_PORT=8090
 CMD ["flask","run","--host=0.0.0.0"]
 #CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0", "--port", "8080"]
