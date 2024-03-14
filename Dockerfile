@@ -11,7 +11,7 @@ COPY . .
 
 #ENV FLASK_APP="utility.py"
 #env FLASK_APP="utility.py python -m flask run"
-
+EXPOSE 8090
 ENV FLASK_APP=utility.py
 #ENV FLASK_DEBUG=1
 #ENV FLASK_RUN_PORT=8090
