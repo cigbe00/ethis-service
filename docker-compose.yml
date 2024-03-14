@@ -7,18 +7,25 @@
 #     ports:
 #       - "8080:80"
 
+# version: "3.8"
+# services:
+#   api:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     ports:
+#       - "8090:8090"
+#     expose: 
+#       - "8090"
+#     volumes:
+#       - .:/app
+#     stdin_open: true
+#     environment:
+#         - FLASK_APP=utility.py
+
 version: "3.8"
 services:
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  web:
+    image: 381492145015.dkr.ecr.us-east-1.amazonaws.com/ethis_interview_ecs:63
     ports:
       - "8090:8090"
-    expose: 
-      - "8090"
-    volumes:
-      - .:/app
-    stdin_open: true
-    environment:
-        - FLASK_APP=utility.py
