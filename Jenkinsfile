@@ -76,6 +76,7 @@ pipeline {
                         sed -i' ' "s/${oldBuild}/ethis_interview_ecs:${BUILD_NUMBER}/g" manifest/deployment.yml
                         sed -i' ' "s/${oldBuild}/ethis_interview_ecs:${BUILD_NUMBER}/g" docker-compose.yml
                         git add manifest/deployment.yml
+                        git add docker-compose.yml
                         git commit -m "updated the image ${BUILD_NUMBER}"
                         git push -u origin main
                         
