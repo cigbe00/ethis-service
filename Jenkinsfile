@@ -46,7 +46,7 @@ pipeline {
         stage ('Run Unit Tests') {
             steps {
                 sh '''
-                    docker-compose run --rm web 
+                    /usr/local/bin/docker-compose run --rm web 
                 '''
                   
                 
