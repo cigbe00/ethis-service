@@ -26,6 +26,6 @@
 version: "3.8"
 services:
   web:
-    image: 381492145015.dkr.ecr.us-east-1.amazonaws.com/ethis_interview_ecs:63
+    image: 381492145015.dkr.ecr.us-east-1.amazonaws.com/ethis_interview_ecs:66
     ports:
       - "8090:8090"
