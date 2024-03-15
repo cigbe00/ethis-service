@@ -8,11 +8,12 @@ COPY requirement.txt .
 
 # Install dependencies
 RUN pip3 install --no-cache-dir -r requirement.txt
+#RUN ["pytest"]
 
 # Copy app code
 COPY . .
 
 EXPOSE 8090
 ENV FLASK_APP=utility.py
-CMD ["flask","run","--host=0.0.0.0"]
-#CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0", "--port", "8080"]
+#CMD ["flask","run","--host=0.0.0.0"]
+CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0", "--port", "8090"]

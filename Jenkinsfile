@@ -31,13 +31,33 @@ pipeline {
             }
         }
         
-        stage ('Building and push image') {
+        stage ('Build Image') {
             steps {
                 //sh 'chmod +x ./build_push.sh'
             
                 sh '''
                     BUILD_NUMBER=${BUILD_NUMBER}
                     /usr/local/bin/docker build -t $IMAGE_REPO_NAME .
+                '''
+                  
+                
+            }
+        }
+        stage ('Run Unit Tests') {
+            steps {
+                sh '''
+                    docker-compose run --rm web 
+                '''
+                  
+                
+            }
+        }
+        stage ('Push image') {
+            steps {
+                //sh 'chmod +x ./build_push.sh'
+            
+                sh '''
+                    BUILD_NUMBER=${BUILD_NUMBER}
                     /usr/local/bin/docker tag ${IMAGE_REPO_NAME} ${REPOSITORY_URI}:${BUILD_NUMBER}
                     /usr/local/bin/aws ecr get-login-password --region us-east-1 | /usr/local/bin/docker login --username AWS --password-stdin 381492145015.dkr.ecr.us-east-1.amazonaws.com
                     /usr/local/bin/docker push ${REPOSITORY_URI}:${BUILD_NUMBER}
@@ -62,9 +82,7 @@ pipeline {
                         BUILD_NUMBER=${BUILD_NUMBER}
                         oldBuild=`cat manifest/deployment.yml |grep -o 'ethis_interview_ecs.*'`
                         sed -i' ' "s/${oldBuild}/ethis_interview_ecs:${BUILD_NUMBER}/g" manifest/deployment.yml
-                        sed -i' ' "s/${oldBuild}/ethis_interview_ecs:${BUILD_NUMBER}/g" docker-compose.yml
                         git add manifest/deployment.yml
-                        git add docker-compose.yml
                         git commit -m "updated the image ${BUILD_NUMBER}"
                         git push -u origin main
                         

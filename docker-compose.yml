@@ -26,6 +26,7 @@
 version: "3.8"
 services:
   web:
-    image: 381492145015.dkr.ecr.us-east-1.amazonaws.com/ethis_interview_ecs:66
+    image: ethis_interview_ecs:latest
+    command: ["pytest"] 
     ports:
       - "8090:8090"
