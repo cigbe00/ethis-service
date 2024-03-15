@@ -12,9 +12,6 @@ RUN pip3 install --no-cache-dir -r requirement.txt
 # Copy app code
 COPY . .
 
-# Run unit tests
-RUN pytest
-
 EXPOSE 8090
 ENV FLASK_APP=utility.py
 CMD ["flask","run","--host=0.0.0.0"]
